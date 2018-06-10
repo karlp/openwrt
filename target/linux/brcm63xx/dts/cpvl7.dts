@@ -1,0 +1,90 @@
+/dts-v1/;
+
+#include "bcm6368.dtsi"
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/input/input.h>
+
+/ {
+	model = "Telsey CPVL7";
+	compatible = "telsey,cpvl7", "brcm,bcm6368";
+
+	chosen {
+		bootargs = "rootfstype=squashfs noinitrd console=ttyS0,115200";
+		stdout-path = "serial0:115200n8";
+	};
+
+	gpio-keys-polled {
+		compatible = "gpio-keys-polled";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		poll-interval = <20>;
+		debounce-interval = <60>;
+
+		reset {
+			label = "reset";
+			gpios = <&pinctrl 36 GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_RESTART>;
+		};
+
+		wps {
+			label = "wps";
+			gpios = <&pinctrl 37 GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_WPS_BUTTON>;
+		};
+	};
+
+	gpio-leds {
+		compatible = "gpio-leds";
+
+		eth {
+			label = "telsey:green:eth";
+			gpios = <&pinctrl 2 GPIO_ACTIVE_LOW>;
+		};
+
+		wifi {
+			label = "telsey:orange:wifi";
+			gpios = <&pinctrl 4 GPIO_ACTIVE_LOW>;
+		};
+
+		usb {
+			label = "telsey:orange:usb";
+			gpios = <&pinctrl 5 GPIO_ACTIVE_LOW>;
+		};
+
+		power_red {
+			label = "telsey:red:power";
+			gpios = <&pinctrl 15 GPIO_ACTIVE_LOW>;
+			default-state = "on";
+		};
+
+		altibox {
+			label = "telsey:green:altibox";
+			gpios = <&pinctrl 24 GPIO_ACTIVE_LOW>;
+		};
+
+		voip1 {
+			label = "telsey:green:voip1";
+			gpios = <&pinctrl 26 GPIO_ACTIVE_LOW>;
+		};
+
+		voip2 {
+			label = "telsey:green:voip2";
+			gpios = <&pinctrl 27 GPIO_ACTIVE_LOW>;
+		};
+	};
+};
+
+&pflash {
+	status = "ok";
+
+	linux,part-probe = "bcm63xxpart";
+};
+
+&uart0 {
+	status = "ok";
+};
+
+&uart1 {
+	status = "ok";
+};

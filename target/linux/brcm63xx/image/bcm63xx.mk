@@ -1083,6 +1083,19 @@ define Device/CPVA502PLUS
 endef
 TARGET_DEVICES += CPVA502PLUS
 
+define Device/CPVL7
+  $(Device/bcm63xx)
+  DEVICE_TITLE := Telsey CPVL7
+  DEVICE_DTS := cpvl7
+  CFE_BOARD_ID := CPVL7
+  CFE_CHIP_ID := 6368
+  CFE_EXTRAS += --signature "Telsey Tlc" --signature2 "99.99.999"
+  DEVICE_PACKAGES := \
+    $(RT28_PACKAGES) $(USB2_PACKAGES)
+endef
+TARGET_DEVICES += CPVL7
+
+
 define Device/CPA-ZNTE60T
   $(Device/bcm63xx)
   DEVICE_TITLE := Telsey CPVA642-type (CPA-ZNTE60T)

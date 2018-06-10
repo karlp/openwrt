@@ -255,6 +255,9 @@ brcm63xx_dt_detect() {
 	"Telsey CPVA642-type (CPA-ZNTE60T)")
 		board_name="cpva642"
 		;;
+	"Telsey CPVL7")
+		board_name="cpvl7"
+		;;
 	"Telsey MAGIC")
 		board_name="magic"
 		;;
