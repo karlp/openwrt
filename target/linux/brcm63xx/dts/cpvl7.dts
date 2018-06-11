@@ -2,6 +2,7 @@
 
 #include "bcm6368.dtsi"
 
+#include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/input/input.h>
 
 / {
@@ -20,6 +21,7 @@
 		poll-interval = <20>;
 		debounce-interval = <60>;
 
+		/* neither of these are correct :( */
 		reset {
 			label = "reset";
 			gpios = <&pinctrl 34 1>;
@@ -36,38 +38,38 @@
 	gpio-leds {
 		compatible = "gpio-leds";
 
-		inet_green {
-			label = "R1000H:green:inet";
-			gpios = <&pinctrl 5 0>;
+		usb_orange {
+			label = "telsey:orange:usb";
+			gpios = <&pinctrl 5 GPIO_ACTIVE_LOW>;
 		};
 
-		usb_green {
+		altibox {
+			label = "telsey:green:altibox";
+			gpios = <&pinctrl 24 GPIO_ACTIVE_LOW>;
+		};
+
+		usb_green { /* unused? */
 			label = "R1000H:green:usb";
 			gpios = <&pinctrl 21 1>;
 		};
 
-		power_green {
+		power_green { /* unused on my device? */
 			label = "R1000H:green:power";
 			gpios = <&pinctrl 22 0>;
 			default-state = "on";
 		};
 
-		wps_green {
+		wps_green { /* unused? */
 			label = "R1000H:green:wps";
 			gpios = <&pinctrl 23 1>;
 		};
 
-		power_red {
-			label = "R1000H:red:power";
-			gpios = <&pinctrl 24 0>;
-		};
-
-		wps_red {
+		wps_red { /* unused */
 			label = "R1000H:red:wps";
 			gpios = <&pinctrl 30 1>;
 		};
 
-		inet_red {
+		inet_red { /* unused */
 			label = "R1000H:red:inet";
 			gpios = <&pinctrl 31 0>;
 		};
