@@ -38,9 +38,25 @@
 	gpio-leds {
 		compatible = "gpio-leds";
 
-		usb_orange {
+		eth {
+			label = "telsey:green:eth";
+			gpios = <&pinctrl 2 GPIO_ACTIVE_LOW>;
+		};
+
+		wifi {
+			label = "telsey:orange:wifi";
+			gpios = <&pinctrl 4 GPIO_ACTIVE_LOW>;
+		};
+
+		usb {
 			label = "telsey:orange:usb";
 			gpios = <&pinctrl 5 GPIO_ACTIVE_LOW>;
+		};
+
+		power_red {
+			label = "telsey:red:power";
+			gpios = <&pinctrl 15 GPIO_ACTIVE_LOW>;
+			default-state = "on";
 		};
 
 		altibox {
@@ -48,30 +64,14 @@
 			gpios = <&pinctrl 24 GPIO_ACTIVE_LOW>;
 		};
 
-		usb_green { /* unused? */
-			label = "R1000H:green:usb";
-			gpios = <&pinctrl 21 1>;
+		voip1 {
+			label = "telsey:green:voip1";
+			gpios = <&pinctrl 26 GPIO_ACTIVE_LOW>;
 		};
 
-		power_green { /* unused on my device? */
-			label = "R1000H:green:power";
-			gpios = <&pinctrl 22 0>;
-			default-state = "on";
-		};
-
-		wps_green { /* unused? */
-			label = "R1000H:green:wps";
-			gpios = <&pinctrl 23 1>;
-		};
-
-		wps_red { /* unused */
-			label = "R1000H:red:wps";
-			gpios = <&pinctrl 30 1>;
-		};
-
-		inet_red { /* unused */
-			label = "R1000H:red:inet";
-			gpios = <&pinctrl 31 0>;
+		voip2 {
+			label = "telsey:green:voip2";
+			gpios = <&pinctrl 27 GPIO_ACTIVE_LOW>;
 		};
 	};
 };
