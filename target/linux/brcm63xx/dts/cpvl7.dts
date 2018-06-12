@@ -21,16 +21,15 @@
 		poll-interval = <20>;
 		debounce-interval = <60>;
 
-		/* neither of these are correct :( */
 		reset {
 			label = "reset";
-			gpios = <&pinctrl 34 1>;
+			gpios = <&pinctrl 36 GPIO_ACTIVE_LOW>;
 			linux,code = <KEY_RESTART>;
 		};
 
 		wps {
 			label = "wps";
-			gpios = <&pinctrl 35 1>;
+			gpios = <&pinctrl 37 GPIO_ACTIVE_LOW>;
 			linux,code = <KEY_WPS_BUTTON>;
 		};
 	};
