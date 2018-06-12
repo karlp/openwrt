@@ -1091,7 +1091,7 @@ define Device/CPVL7
   CFE_CHIP_ID := 6368
   CFE_EXTRAS += --signature "Telsey Tlc" --signature2 "99.99.999"
   DEVICE_PACKAGES := \
-    $(USB2_PACKAGES)
+    $(RT28_PACKAGES) $(USB2_PACKAGES)
 endef
 TARGET_DEVICES += CPVL7
 
