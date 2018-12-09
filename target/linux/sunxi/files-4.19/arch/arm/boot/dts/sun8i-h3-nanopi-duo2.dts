@@ -61,8 +61,10 @@
 
         leds {
                 compatible = "gpio-leds";
-                pinctrl-names = "default";
+                /*
+		pinctrl-names = "default";
                 pinctrl-0 = <&leds_npi>, <&leds_r_npi>;
+		*/
 
                 status {
                         label = "nanopi:green:status";
@@ -77,6 +79,7 @@
                 };
         };
 
+/* doesn't work, pin is right from schematic, but.... ?
         r_gpio_keys {
                 compatible = "gpio-keys";
                 input-name = "k1";
@@ -89,12 +92,13 @@
                         gpios = <&r_pio 0 3 GPIO_ACTIVE_LOW>;
                 };
         };
+*/
 
 	/* FIXME - include regulator here for 1.1v/1.3V switch */
 
         wifi_pwrseq: wifi_pwrseq {
                 compatible = "mmc-pwrseq-simple";
-                pinctrl-names = "default";
+                /* pinctrl-names = "default"; */
                 reset-gpios = <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
         };
 
@@ -133,6 +137,7 @@
         };
 };
 
+/* doesn't seem necessary? 
 &pio {
         leds_npi: led_pins {
                 pins = "PA10";
@@ -151,6 +156,7 @@
                 function = "gpio_in";
         };
 };
+*/
 
 &uart0 {
         pinctrl-names = "default";
