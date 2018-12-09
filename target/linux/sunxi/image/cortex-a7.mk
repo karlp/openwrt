@@ -127,6 +127,23 @@ endef
 
 TARGET_DEVICES += sun8i-h2-plus-orangepi-r1
 
+define Device/sun8i-h3-nanopi-duo2
+  DEVICE_TITLE:=FriendlyARM NanoPi duo2
+  DEVICE_PACKAGES:=kmod-rtc-sunxi kmod-brcmfmac brcmfmac-firmware-43430-sdio \
+	 wpad-basic
+  SUPPORTED_DEVICES:=friendlyarm,nanopi-duo2
+  SUNXI_DTS:=sun8i-h3-nanopi-duo2
+endef
+TARGET_DEVICES += sun8i-h3-nanopi-duo2
+
+define Device/sun8i-h3-nanopi-duo2-iotbox
+  DEVICE_TITLE:=FriendlyARM NanoPi Duo2 IoT Box
+  DEVICE_PACKAGES:=kmod-rtc-sunxi kmod-brcmfmac brcmfmac-firmware-43430-sdio \
+	 wpad-basic
+  SUPPORTED_DEVICES:=friendlyarm,nanopi-duo2-iotbox
+  SUNXI_DTS:=sun8i-h3-nanopi-duo2-iotbox
+endef
+TARGET_DEVICES += sun8i-h3-nanopi-duo2-iotbox
 
 define Device/sun8i-h3-nanopi-m1-plus
   DEVICE_TITLE:=FriendlyArm NanoPi M1 Plus
@@ -139,7 +156,6 @@ endef
 
 TARGET_DEVICES += sun8i-h3-nanopi-m1-plus
 
-
 define Device/sun8i-h3-nanopi-neo
   DEVICE_TITLE:=FriendlyARM NanoPi NEO
   SUPPORTED_DEVICES:=friendlyarm,nanopi-neo
@@ -147,7 +163,6 @@ define Device/sun8i-h3-nanopi-neo
 endef
 
 TARGET_DEVICES += sun8i-h3-nanopi-neo
-
 
 define Device/sun8i-h3-orangepi-pc
   DEVICE_TITLE:=Xunlong Orange Pi PC

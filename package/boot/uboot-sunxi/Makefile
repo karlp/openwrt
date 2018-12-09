@@ -144,6 +144,14 @@ define U-Boot/nanopi_neo
   BUILD_DEVICES:=sun8i-h3-nanopi-neo
 endef
 
+define U-Boot/nanopi_duo2
+  BUILD_SUBTARGET:=cortexa7
+  NAME:=U-Boot for NanoPi Duo2 (H3)
+  #BUILD_DEVICES:=sun8i-h3-nanopi-duo2
+  # neo is enough for uboot
+  BUILD_DEVICES:=sun8i-h3-nanopi-neo
+endef
+
 define U-Boot/orangepi_r1
   BUILD_SUBTARGET:=cortexa7
   NAME:=Orange Pi R1 (H2+)
@@ -262,7 +270,8 @@ UBOOT_TARGETS := \
 	pine64_plus \
 	sopine_baseboard \
 	orangepi_zero_plus
-
+# nope.
+#UBOOT_TARGETS += nanopi_duo2
 UBOOT_CONFIGURE_VARS += USE_PRIVATE_LIBGCC=yes
 
 UBOOT_MAKE_FLAGS += \
