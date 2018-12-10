@@ -64,6 +64,12 @@
         status = "okay";
 };
 
+/* should be on already
+&usbphy {
+	status = "okay";
+};
+*/
+
 &emac {
         phy-handle = <&int_mii_phy>;
         phy-mode = "mii";
