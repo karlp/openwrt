@@ -94,22 +94,38 @@
         };
 */
 
-	/* FIXME - include regulator here for 1.1v/1.3V switch */
+        reg_vdd_cpux: vdd-cpux-regulator {
+                compatible = "regulator-gpio";
+                regulator-name = "vdd-cpux";
+                //regulator-boot-on;
+                regulator-always-on;
+                regulator-min-microvolt = <1100000>;
+                regulator-max-microvolt = <1300000>;
+                //regulator-ramp-delay = <50>; /* 4ms */
+
+                gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
+                enable-active-high;
+                gpios-states = <0x1>; /* can I confirm this?, this is default state */
+                states = <1100000 0x0
+                          1300000 0x1>;
+        };
 
         wifi_pwrseq: wifi_pwrseq {
                 compatible = "mmc-pwrseq-simple";
-                /* pinctrl-names = "default"; */
                 reset-gpios = <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
         };
 
 };
 
-&usb_otg {
-	status = "okay";
-	dr_mode = "peripheral";
+&cpu0 {
+        cpu-supply = <&reg_vdd_cpux>;
 };
 
-/* I _think_ I only need these two if I am using usb_otg (port0) in host mode
+&usb_otg {
+	status = "okay";
+	dr_mode = "otg";
+};
+
 &ehci0 {
 	status = "okay";
 };
@@ -117,10 +133,15 @@
 &ohci0 {
 	status = "okay";
 };
-*/
+
+&reg_usb0_vbus {
+        gpio = <&r_pio 0 2 GPIO_ACTIVE_HIGH>; /* PL2 */
+        status = "okay";
+};
 
 &usbphy {
 	usb0_id_det-gpios = <&pio 6 12 GPIO_ACTIVE_HIGH>; /* PG12 */
+	usb0_vbus-supply = <&reg_usb0_vbus>;
 	status = "okay";
 };
 
@@ -147,27 +168,6 @@
                 interrupt-names = "host-wake";
         };
 };
-
-/* doesn't seem necessary? 
-&pio {
-        leds_npi: led_pins {
-                pins = "PA10";
-                function = "gpio_out";
-        };
-};
-
-&r_pio {
-        leds_r_npi: led_pins {
-                pins = "PL10";
-                function = "gpio_out";
-        };
-
-        sw_r_npi: key_pins {
-                pins = "PL3";
-                function = "gpio_in";
-        };
-};
-*/
 
 &uart0 {
         pinctrl-names = "default";

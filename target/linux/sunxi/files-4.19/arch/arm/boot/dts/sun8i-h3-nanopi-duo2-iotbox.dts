@@ -64,12 +64,6 @@
         status = "okay";
 };
 
-/* should be on already
-&usbphy {
-	status = "okay";
-};
-*/
-
 &emac {
         phy-handle = <&int_mii_phy>;
         phy-mode = "mii";
@@ -83,3 +77,5 @@
         pinctrl-0 = <&uart3_pins>;
         status = "okay";
 };
+
+/* Not addressed, g11 is pwr-key for sim800c module */
