@@ -77,12 +77,10 @@
 
 	r_gpio_keys {
 		compatible = "gpio-keys";
-		pinctrl-names = "default";
-		pinctrl-0 = <&sw_r_npi>;
 
 		k1 {
 			label = "k1";
-			linux,code = <KEY_POWER>;
+			linux,code = <KEY_BTN0>;
 			gpios = <&r_pio 0 3 GPIO_ACTIVE_LOW>;
 		};
 	};
@@ -90,11 +88,11 @@
 	reg_vdd_cpux: vdd-cpux-regulator {
 		compatible = "regulator-gpio";
 		regulator-name = "vdd-cpux";
-                //regulator-boot-on;
+		regulator-boot-on;
 		regulator-always-on;
 		regulator-min-microvolt = <1100000>;
 		regulator-max-microvolt = <1300000>;
-		//regulator-ramp-delay = <50>; /* 4ms */
+		regulator-ramp-delay = <50>; /* 4ms */
 
 		gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
 		enable-active-high;
@@ -138,13 +136,6 @@
 		pins = "PA2", "PA3";
 		function = "uart2";
 	};
-};
-
-&r_pio {
-        sw_r_npi: key_pins {
-                pins = "PL3";
-                function = "gpio_in";
-        };
 };
 
 &usbphy {
