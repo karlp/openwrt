@@ -145,6 +145,15 @@ define Device/sun8i-h3-nanopi-duo2-iotbox
 endef
 TARGET_DEVICES += sun8i-h3-nanopi-duo2-iotbox
 
+define Device/sun8i-h3-etactica-eg220proto
+  DEVICE_TITLE:=eTactica EG220 proto
+  DEVICE_PACKAGES:=kmod-rtc-sunxi kmod-brcmfmac brcmfmac-firmware-43430-sdio \
+	 wpad-basic
+  SUPPORTED_DEVICES:=etactica,eg220proto
+  SUNXI_DTS:=sun8i-h3-etactica-eg220proto
+endef
+TARGET_DEVICES += sun8i-h3-etactica-eg220proto
+
 define Device/sun8i-h3-nanopi-m1-plus
   DEVICE_TITLE:=FriendlyArm NanoPi M1 Plus
   DEVICE_PACKAGES:=kmod-rtc-sunxi \
