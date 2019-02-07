@@ -29,6 +29,19 @@ define Build/sunxi-sdcard
 	rm -f $@.boot
 endef
 
+define Build/rootfs-uboot
+	echo "KARL _ BUILDING MY SPECIAL TARGET"
+#ifdef CONFIG_TARGET_ROOTFS_CPIOGZ
+#	echo "YES, rootfs cpio existed we can convert it"
+#endef
+	mkimage -A arm \
+		-O linux -T ramdisk \
+		-C gzip \
+		-d $(BIN_DIR)/$(IMG_PREFIX)-rootfs.cpio.gz \
+		$@
+endef
+
+
 # why \x00\x00\x00\x00 for zImage-initramfs
 define Device/Default
   PROFILES := Default
@@ -37,6 +50,8 @@ define Device/Default
   KERNEL := kernel-bin | uImage none
   IMAGES := sdcard.img.gz
   IMAGE/sdcard.img.gz := sunxi-sdcard | append-metadata | gzip
+  ARTIFACTS := rootfs.uboot
+  ARTIFACT/rootfs.uboot := rootfs-uboot
 endef
 
 include cortex-a7.mk
